@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#F2EFE6">
+    <title>Decimal Med Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="app-header">
+        <h1 class="app-title">DECIMAL<br>MEDS</h1>
+    </header>
+
+    <main id="app-content">
+        
+        <!-- Dashboard View -->
+        <section id="view-dashboard" class="view active">
+            <!-- Bauhaus Centerpiece: The Clock -->
+            <div class="clock-centerpiece">
+                <div class="clock-inner">
+                    <span id="decimal-clock" class="clock-time">00:00:00</span>
+                    <span class="clock-label">DECIMAL TIME</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">Dashboard</h2>
+            <div id="dashboard-timer-widget"></div>
+            <div class="card empty-state">
+                <p>Welcome to your Decimal Med Tracker.</p>
+                <p>Go to the "Meds" tab to add and track your medications.</p>
+            </div>
+        </section>
+
+        <!-- Meds View -->
+        <section id="view-meds" class="view">
+            <div class="page-header">
+                <h2 class="section-title">Medications</h2>
+                <button id="btn-open-add" class="btn-icon">+ Add</button>
+            </div>
+            
+            <div id="meds-timer-widget"></div>
+            <div id="meds-list"></div>
+            <div id="meds-empty" class="card empty-state hidden">
+                <p>No medications added yet.</p>
+                <p>Tap "+ Add" in the top right to get started.</p>
+            </div>
+        </section>
+
+        <!-- History View -->
+        <section id="view-history" class="view">
+            <h2 class="section-title">History</h2>
+            
+            <!-- Bauhaus Motif: 7-Day Completion Grid -->
+            <div id="bauhaus-grid" class="bauhaus-grid"></div>
+
+            <div id="history-logs-list"></div>
+            <div id="history-empty" class="card empty-state hidden">
+                <p>No logs yet. Track a medication to see it here!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL: Add Medication -->
+    <div id="modal-add" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Add Medication</h3>
+                <button class="btn-close" onclick="closeModal('modal-add')">×</button>
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="input-med-name" class="input" placeholder="e.g., Vitamin D">
+            </div>
+            <div class="form-group">
+                <label>Release Profile (Optional)</label>
+                <select id="input-med-release" class="input">
+                    <option value="">None</option>
+                    <option value="Instant Release">Instant Release</option>
+                    <option value="Extended-Release">Extended-Release</option>
+                </select>
+            </div>
+            <button id="btn-save-med" class="btn btn-primary">Save Medication</button>
+        </div>
+    </div>
+
+    <!-- MODAL: Track Medication -->
+    <div id="modal-track" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="track-med-title">Track Medication</h3>
+                <button class="btn-close" onclick="closeModal('modal-track')">×</button>
+            </div>
+            
+            <div class="form-group">
+                <label>Route of Administration</label>
+                <select id="input-route" class="input">
+                    <option value="PO">PO (Oral)</option>
+                    <option value="SL">SL (Sublingual)</option>
+                    <option value="IN">IN (Insufflation)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Dose</label>
+                <input type="number" inputmode="decimal" id="input-dose" class="input" placeholder="e.g., 50">
+            </div>
+            <div class="form-group">
+                <label>Unit</label>
+                <select id="input-unit" class="input">
+                    <option value="mg">mg</option>
+                    <option value="μg">μg</option>
+                    <option value="g">g</option>
+                </select>
+            </div>
+
+            <button id="btn-start-tracking" class="btn btn-primary">Start Tracking</button>
+        </div>
+    </div>
+
+    <nav id="bottom-nav">
+        <button class="nav-btn active" data-view="dashboard">
+            <span class="nav-icon"></span> Home
+        </button>
+        <button class="nav-btn" data-view="meds">
+            <span class="nav-icon"></span> Meds
+        </button>
+        <button class="nav-btn" data-view="history">
+            <span class="nav-icon"></span> History
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>

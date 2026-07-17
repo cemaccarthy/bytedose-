@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f2f2f7">
+    <title>Decimal Med Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="app-header">
+        <div class="clock-container">
+            <span id="decimal-clock" class="clock-time">00:00:00</span>
+            <span class="clock-label">DECIMAL TIME</span>
+        </div>
+    </header>
+
+    <main id="app-content">
+        
+        <!-- Dashboard View -->
+        <section id="view-dashboard" class="view active">
+            <h2>Today's Tracker</h2>
+            
+            <!-- Active Timer Widget -->
+            <div id="timer-widget" class="card timer-card hidden">
+                <h3 id="timer-med-name">Timing Medication</h3>
+                <div class="timer-value" id="timer-value">00:00:00</div>
+                <span class="timer-label">Decimal Duration</span>
+                <button id="btn-stop-timer" class="btn btn-danger">Stop & Log</button>
+            </div>
+
+            <!-- Dashboard Meds List -->
+            <div id="dashboard-meds-list"></div>
+            
+            <div id="dashboard-empty" class="card empty-state hidden">
+                <p>No medications added yet.</p>
+                <p>Go to the "Meds" tab to add your first one!</p>
+            </div>
+        </section>
+
+        <!-- Meds View -->
+        <section id="view-meds" class="view">
+            <h2>Manage Medications</h2>
+            
+            <!-- Add Med Form -->
+            <div class="card">
+                <h3 style="margin-bottom: 15px;">Add New Medication</h3>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="input-med-name" class="input" placeholder="e.g., Vitamin D">
+                </div>
+                <div class="form-group">
+                    <label>Dosage</label>
+                    <input type="text" id="input-med-dosage" class="input" placeholder="e.g., 1000 IU">
+                </div>
+                <div class="form-group toggle-group">
+                    <label>Requires Decimal Timer?</label>
+                    <label class="switch">
+                        <input type="checkbox" id="input-med-timer">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button id="btn-add-med" class="btn btn-primary">Add Medication</button>
+            </div>
+
+            <!-- Existing Meds List -->
+            <h3 style="margin: 20px 0 10px; color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Your Medications</h3>
+            <div id="meds-manage-list"></div>
+        </section>
+
+        <!-- History View -->
+        <section id="view-history" class="view">
+            <h2>History</h2>
+            <div id="history-logs-list"></div>
+            <div id="history-empty" class="card empty-state hidden">
+                <p>No logs yet. Take a medication to see it here!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <nav id="bottom-nav">
+        <button class="nav-btn active" data-view="dashboard">
+            <span class="nav-icon">🏠</span> Dashboard
+        </button>
+        <button class="nav-btn" data-view="meds">
+            <span class="nav-icon">💊</span> Meds
+        </button>
+        <button class="nav-btn" data-view="history">
+            <span class="nav-icon">📊</span> History
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>
